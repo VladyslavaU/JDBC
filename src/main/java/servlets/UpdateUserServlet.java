@@ -9,46 +9,45 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-@WebServlet(urlPatterns = "/addServlet")
-
-public class CreateUserServlet extends HttpServlet {
+@WebServlet("/updateServlet")
+public class UpdateUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Connection connection;
-    PreparedStatement statement;
+    private PreparedStatement statement;
 
-    public void init(ServletConfig config){
-        try{
+    public void init(ServletConfig config) {
+        try {
             ServletContext context = config.getServletContext();
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
                     context.getInitParameter("dbUrl"),
                     context.getInitParameter("dbUser"),
-                    context.getInitParameter("dbPassword") );
-            statement = connection.prepareStatement("insert into person(first_name, last_name, age, email) values(?,?,?,?)");
+                    context.getInitParameter("dbPassword"));
+            statement = connection.prepareStatement("update person set age=? where email=?");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
         int age = Integer.parseInt(request.getParameter("age"));
         String email = request.getParameter("email");
+        PrintWriter out = response.getWriter();
+
 
         try {
-            statement.setString(1, firstName);
-            statement.setString(2, lastName);
-            statement.setInt(3, age);
-            statement.setString(4, email);
+            statement.setString(1, email);
+            statement.setInt(2, age);
             int result = statement.executeUpdate();
             if (result > 0) {
-                out.print("<H1>User Deleted</H1>");
+                out.print("<H1>User Updated</H1>");
             } else {
                 out.print("<H1>Invalid User</H1>");
             }
@@ -58,13 +57,12 @@ public class CreateUserServlet extends HttpServlet {
         }
     }
 
-
     public void destroy() {
         try {
-            statement.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }
