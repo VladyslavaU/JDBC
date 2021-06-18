@@ -9,10 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 @WebServlet(urlPatterns = "/addServlet")
 
@@ -29,7 +26,7 @@ public class CreateUserServlet extends HttpServlet {
                     context.getInitParameter("dbUrl"),
                     context.getInitParameter("dbUser"),
                     context.getInitParameter("dbPassword") );
-            statement = connection.prepareStatement("insert into person(first_name, last_name, age, email) values(?,?,?,?)");
+            statement = connection.prepareStatement("insert into person(first_name, last_name, age, email) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
