@@ -47,7 +47,6 @@ public class CreateUserServlet extends HttpServlet {
             statement.setInt(3, age);
             statement.setString(4, email);
             statement.executeUpdate();
-
             out.print("User created");
 
         } catch (SQLException e) {

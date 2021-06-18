@@ -37,13 +37,13 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int age = Integer.parseInt(request.getParameter("age"));
         PrintWriter out = response.getWriter();
-
+        int age = Integer.parseInt(request.getParameter("age"));
         String email = request.getParameter("email");
+
         try {
-            statement.setString(1, email);
-            statement.setInt(2, age);
+            statement.setString(4, email);
+            statement.setInt(3, age);
 
             int result = statement.executeUpdate();
             if (result > 0) {

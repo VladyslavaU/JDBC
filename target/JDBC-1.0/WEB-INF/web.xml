@@ -10,7 +10,7 @@
 
     <context-param>
         <param-name>dbUrl</param-name>
-        <param-value>jdbc:postgresql://37.139.171.136:5432/userdb</param-value>
+        <param-value>jdbc:postgresql://95.67.63.220:5432/users</param-value>
     </context-param>
     <context-param>
         <param-name>dbUser</param-name>
@@ -18,7 +18,7 @@
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>admin</param-value>
+        <param-value>123123</param-value>
     </context-param>
 
 
