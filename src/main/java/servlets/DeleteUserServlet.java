@@ -27,7 +27,7 @@ public class DeleteUserServlet extends HttpServlet {
                     context.getInitParameter("dbUrl"),
                     context.getInitParameter("dbUser"),
                     context.getInitParameter("dbPassword"));
-            statement = connection.prepareStatement( "DELETE FROM person WHERE email= ?");
+            statement = connection.prepareStatement("DELETE FROM person WHERE email= ?");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class DeleteUserServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         try {
-            statement.setString(1,email);
+            statement.setString(1, email);
             int result = statement.executeUpdate();
             PrintWriter out = response.getWriter();
             if (result > 0) {

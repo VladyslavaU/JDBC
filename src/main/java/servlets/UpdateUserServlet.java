@@ -9,10 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 @WebServlet("/updateServlet")
 public class UpdateUserServlet extends HttpServlet {
@@ -42,9 +39,8 @@ public class UpdateUserServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         try {
-            statement.setString(4, email);
-            statement.setInt(3, age);
-
+            statement.setString(2, email);
+            statement.setInt(1, age);
             int result = statement.executeUpdate();
             if (result > 0) {
                 out.print("<H1>User Updated</H1>");
@@ -54,7 +50,6 @@ public class UpdateUserServlet extends HttpServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            out.print("error");
         }
     }
 
