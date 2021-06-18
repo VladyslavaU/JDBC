@@ -38,13 +38,13 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int age = Integer.parseInt(request.getParameter("age"));
-        String email = request.getParameter("email");
         PrintWriter out = response.getWriter();
 
-
+        String email = request.getParameter("email");
         try {
             statement.setString(1, email);
             statement.setInt(2, age);
+
             int result = statement.executeUpdate();
             if (result > 0) {
                 out.print("<H1>User Updated</H1>");
@@ -54,6 +54,7 @@ public class UpdateUserServlet extends HttpServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            out.print("error");
         }
     }
 
