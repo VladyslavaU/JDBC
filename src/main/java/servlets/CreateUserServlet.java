@@ -26,7 +26,7 @@ public class CreateUserServlet extends HttpServlet {
                     context.getInitParameter("dbUrl"),
                     context.getInitParameter("dbUser"),
                     context.getInitParameter("dbPassword") );
-            statement = connection.prepareStatement("insert into person(first_name, last_name, age, email) values(?,?,?,?)");
+            statement = connection.prepareStatement("insert into person(first_name, last_name, age, email) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -46,14 +46,12 @@ public class CreateUserServlet extends HttpServlet {
             statement.setString(2, lastName);
             statement.setInt(3, age);
             statement.setString(4, email);
-            int result = statement.executeUpdate();
-            if (result > 0) {
-                out.print("<H1>User Deleted</H1>");
-            } else {
-                out.print("<H1>Invalid User</H1>");
-            }
+            statement.executeUpdate();
+
+            out.print("User created");
 
         } catch (SQLException e) {
+            out.println("Error Creating the User");
             e.printStackTrace();
         }
     }
