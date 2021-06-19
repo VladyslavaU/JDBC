@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet("/DeleteServlet")
+@WebServlet("/deleteServlet")
 
 public class DeleteUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
