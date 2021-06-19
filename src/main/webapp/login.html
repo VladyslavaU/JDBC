@@ -6,13 +6,29 @@
 </head>
 <body>
 <form action="loginServlet" method="post">
-  User: <label>
-  <input type="text" name="userName"/>
-</label><br/>
-  Password: <label>
-  <input type="password" name="password"/>
-</label><br/>
-  <input type="submit">
+    <table>
+        <tr>
+            <td>User:</td>
+           <td><label>
+               <input type="text" name="userName"/>
+           </label></td>
+        </tr>
+
+        <tr>
+            <td>Password:</td>
+            <td><label>
+                <input type="password" name="password"/>
+            </label>
+            <td>
+        </tr>
+
+        <tr>
+            <td />
+            <td>
+                <input type="submit">
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>
