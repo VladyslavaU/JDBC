@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet {
                     context.getInitParameter("dbPassword"));
             correctUserName = context.getInitParameter("dbUser");
             correctPassword = context.getInitParameter("dbPassword");
+
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -35,10 +36,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        RequestDispatcher requestDispatcher;
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("homeServlet");
         if (userName.equals(correctUserName) && password.equals(correctPassword)) {
-            requestDispatcher = request.getRequestDispatcher("homeServlet");
-            requestDispatcher.forward(request, response);
             request.setAttribute("message", "Welcome to the Database!");
             requestDispatcher.forward(request, response);
         } else {
