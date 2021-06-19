@@ -12,6 +12,8 @@ import java.sql.SQLException;
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Connection connection;
+    private String correctUserName;
+    private String correctPassword;
 
     public void init(ServletConfig config) {
         try {
@@ -21,6 +23,8 @@ public class LoginServlet extends HttpServlet {
                     context.getInitParameter("dbUrl"),
                     context.getInitParameter("dbUser"),
                     context.getInitParameter("dbPassword"));
+            correctUserName = context.getInitParameter("dbUser");
+            correctPassword = context.getInitParameter("dbPassword");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -32,7 +36,7 @@ public class LoginServlet extends HttpServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         RequestDispatcher requestDispatcher;
-        if (userName.equals(getServletConfig().getInitParameter("dbUser")) && password.equals(getServletConfig().getInitParameter("password"))) {
+        if (userName.equals(correctUserName) && password.equals(correctPassword)) {
             requestDispatcher = request.getRequestDispatcher("homeServlet");
             requestDispatcher.forward(request, response);
             request.setAttribute("message", "Welcome to the Database!");

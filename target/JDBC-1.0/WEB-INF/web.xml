@@ -4,7 +4,7 @@
          version="3.1">
     <display-name>JDBC</display-name>
     <welcome-file-list>
-        <welcome-file>Login.html</welcome-file>
+        <welcome-file>login.html</welcome-file>
     </welcome-file-list>
 
 
