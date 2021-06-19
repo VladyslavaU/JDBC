@@ -14,7 +14,6 @@
     public void jspInit() {
         try {
             Class.forName("org.postgresql.Driver");
-            DriverManager.getConnection("org.postgresql.Driver");
             con = DriverManager.getConnection("jdbc:postgresql://95.67.63.220:5432/users", "postgres", "123123");
             ps = con.prepareStatement("insert into person(first_name, last_name, age, email) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException | ClassNotFoundException throwables) {
