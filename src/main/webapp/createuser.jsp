@@ -21,8 +21,7 @@
             throwables.printStackTrace();
         }
     }
-
-    public void destroy() {
+    public void jspDestroy() {
         try {
             ps.close();
             con.close();
