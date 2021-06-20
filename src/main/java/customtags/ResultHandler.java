@@ -33,10 +33,10 @@ public class ResultHandler extends TagSupport {
             JspWriter out = pageContext.getOut();
 
             if (rs.next()){
-                out.print("User Details are:<br/> First Name:");
-                out.print(rs.getString(1));
-                out.print("User Details are:<br/> Last Name:");
+                out.print("User Details are:<br/> First Name: ");
                 out.print(rs.getString(2));
+                out.print("<br/> Last Name: ");
+                out.print(rs.getString(3));
             } else {
                 out.print("User not found");
             }
