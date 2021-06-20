@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Create Account</h1>
-<form action="">
+<form action="account" method="post">
     <pre>
       First Name: <label>
 <input type="text" name="firstName"/>

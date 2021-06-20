@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Find Account</title>
-    <form action="">
+    <form action="account" method="post">
         <pre>
             First Name: <input type="text" name="firstName"/>
             Last Name: <input type="text" name="lastName"/>

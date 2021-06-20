@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Create Deposit</h1>
-<form action="">
+<form action="deposit" method="post">
     <pre>
       Deposit amount: <label>
 <input type="text" name="amount"/>
@@ -21,7 +21,6 @@
 <input type="text" name="email"/>
 </label>
       <input type="submit" value="Save">
-
     </pre>
 </form>
 </body>

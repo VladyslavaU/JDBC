@@ -7,10 +7,6 @@
         <welcome-file>login.html</welcome-file>
     </welcome-file-list>
 
-<login-config>
-    <auth-method>BASIC</auth-method>
-    <realm-name>FILE</realm-name>
-</login-config>
     <context-param>
         <param-name>dbUrl</param-name>
         <param-value>jdbc:postgresql://95.67.63.220:5432/users</param-value>
