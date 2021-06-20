@@ -1,12 +1,11 @@
 package customtags;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 
 public class ResultHandler extends TagSupport {
 
@@ -27,7 +26,23 @@ public class ResultHandler extends TagSupport {
     @Override
     public int doStartTag(){
         ServletRequest request = pageContext.getRequest();
-        request.getParameter("email");
+        String email = request.getParameter("email");
+        try {
+            preparedStatement.setString(1,email);
+            ResultSet rs = preparedStatement.executeQuery();
+            JspWriter out = pageContext.getOut();
+
+            if (rs.next()){
+                out.print("User Details are:<br/> First Name:");
+                out.print(rs.getString(1));
+                out.print("User Details are:<br/> Last Name:");
+                out.print(rs.getString(2));
+            } else {
+                out.print("User not found");
+            }
+        } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
+        }
         return Tag.SKIP_BODY;
     }
 
